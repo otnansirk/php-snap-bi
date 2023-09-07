@@ -19,12 +19,12 @@ trait HasAccessToken
      * @param string $token
      * @return self
      */
-    public static function withTokenb2b(string $token = null): self
+    public static function withTokenB2b(string $token = null): self
     {
         if ($token) {
             self::$token = $token;
         } else {
-            self::$token = self::accessTokenb2b()->accessToken;
+            self::$token = self::accessTokenB2b()->accessToken;
         }
 
         return new self;
@@ -47,7 +47,7 @@ trait HasAccessToken
      *
      * @return string | null
      */
-    public static function accessTokenb2b(): object|null
+    public static function accessTokenB2b(): object|null
     {
         $path    = BcaConfig::get('base_url') . "/openapi/v1.0/access-token/b2b";
         $headers = [

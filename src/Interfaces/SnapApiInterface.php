@@ -10,18 +10,19 @@ interface SnapApiInterface
 
     /**
      * Set token if needed
+     * If not privide $token will auto request accessTokenB2b
      *
      * @param string $token
      * @return self
      */
-    public static function withTokenb2b(string $token = null): self;
+    public static function withTokenB2b(string $token = null): self;
 
     /**
      * Get access token
      *
      * @return string | null
      */
-    public static function accessTokenb2b(): object|null;
+    public static function accessTokenB2b(): object|null;
 
     // TRANSACTION
 
