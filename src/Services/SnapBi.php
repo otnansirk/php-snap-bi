@@ -47,9 +47,6 @@ final class SnapBi
      */
     static function __callStatic(string $method, array $args = null): SnapApiInterface
     {
-        if ($args) {
-            self::for($method);
-        }
         return self::for($method);
     }
 
