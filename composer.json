@@ -1,0 +1,28 @@
+{
+    "name": "otnansirk/php-snap-bi",
+    "description": "This is a standard national open API Payments wrapper for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Otnansirk",
+            "email": "iam.otnansirk@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "nesbot/carbon": "^2.69"
+    },
+    "require-dev": {
+        "psy/psysh": "^0.11.20"
+    },
+    "autoload": {
+        "psr-4": {
+            "Otnansirk\\SnapBI\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}

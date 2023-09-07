@@ -1,0 +1,7 @@
+.vscode
+
+composer.lock
+composer.phar
+vendor/
+
+index.php
