@@ -57,6 +57,6 @@ trait HasAccessToken
         ];
 
         $body = ['grantType' => 'client_credentials'];
-        return Http::withHeaders($headers)->post($path, $body);
+        return Http::withHeaders($headers)->post($path, $body)->object();
     }
 }

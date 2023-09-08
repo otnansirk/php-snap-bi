@@ -43,6 +43,7 @@ trait HasTransaction
         $url = BcaConfig::get('base_url') . $path;
         return Http::withToken($accessToken)
             ->withHeaders($headers)
-            ->post($url, $body);
+            ->post($url, $body)
+            ->object();
     }
 }

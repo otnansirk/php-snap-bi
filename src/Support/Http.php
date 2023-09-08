@@ -3,6 +3,7 @@
 namespace Otnansirk\SnapBI\Support;
 
 use Otnansirk\SnapBI\Exception\HttpException;
+use Otnansirk\SnapBI\Interfaces\HttpResponseInterface;
 
 final class Http
 {
@@ -40,7 +41,7 @@ final class Http
      * @param array $headers
      * @return object|null
      */
-    public static function get(string $url): object|null
+    public static function get(string $url): HttpResponseInterface|null
     {
         try {
             return self::requestor($url, 'GET', self::$optHeaders);
@@ -57,7 +58,7 @@ final class Http
      * @param array $headers
      * @return object|null
      */
-    public static function post(string $url, array $body): object|null
+    public static function post(string $url, array $body): HttpResponseInterface|null
     {
         try {
             return self::requestor($url, 'POST', self::$optHeaders, $body);
@@ -81,7 +82,7 @@ final class Http
         string $method = 'POST',
         array $headers = [],
         array $body = []
-    ): object|null {
+    ): HttpResponseInterface {
         $ch = curl_init();
 
         try {
@@ -97,16 +98,21 @@ final class Http
                 CURLOPT_URL            => $url,
                 CURLOPT_HTTPHEADER     => $curlHeaders,
                 CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HEADER         => true,
                 CURLOPT_CUSTOMREQUEST  => strtoupper($method),
                 CURLOPT_POSTFIELDS     => json_encode($body)
             );
-
             curl_setopt_array($ch, $curlOptions);
+
+            // Get http status code info
+            $httpCode   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $statusCode = http_response_code($httpCode);
 
             $response = curl_exec($ch);
             curl_close($ch);
 
-            return json_decode($response);
+            return new HttpResponse($response, $statusCode);
+
         } catch (\Throwable $th) {
             throw new HttpException("Error when request API");
         }
