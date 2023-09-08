@@ -12,8 +12,8 @@ trait HasTransaction
     /**
      * Get list of bank statment
      *
-     * @param string $startDate
-     * @param string $endDate
+     * @param string $startDate | Format ISO-8601 "2023-08-22T00:00:00+07:00"
+     * @param string $endDate | Format ISO-8601 "2023-08-22T00:00:00+07:00"
      * @return object|null
      */
     public static function bankStatement(string $startDate, string $endDate): object|null
@@ -28,8 +28,8 @@ trait HasTransaction
         $body    = [
             "partnerReferenceNo" => int_rand(8),
             "accountNo"          => BcaConfig::get('account_id'),
-            "fromDateTime"       => $startDate . "T00:00:00+07:00",
-            "toDateTime"         => $endDate . "T00:00:00+07:00",
+            "fromDateTime"       => $startDate,
+            "toDateTime"         => $endDate,
             "bankCardToken"      => BcaConfig::get('bank_card_token')
         ];
         $headers = [
