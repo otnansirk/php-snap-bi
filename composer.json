@@ -1,6 +1,11 @@
 {
     "name": "otnansirk/php-snap-bi",
     "description": "This is a standard national open API Payments wrapper for PHP",
+    "keywords": [
+        "snap-bi",
+        "php-snap-bi",
+        "php"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,6 +14,12 @@
             "email": "iam.otnansirk@gmail.com"
         }
     ],
+    "support": {
+        "forum": "https://github.com/otnansirk/php-snap-bi/discussions",
+        "issues": "https://github.com/otnansirk/php-snap-bi/issues",
+        "source": "https://github.com/otnansirk/php-snap-bi",
+        "docs": "https://php-snap-bi.gitbook.io/docs"
+    },
     "require": {
         "php": ">=7.4",
         "ext-curl": "*",
