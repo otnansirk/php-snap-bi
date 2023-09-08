@@ -3,5 +3,7 @@
 composer.lock
 composer.phar
 vendor/
+.phpunit.*
+.code-coverage
 
 index.php
