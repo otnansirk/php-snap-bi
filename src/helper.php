@@ -18,7 +18,7 @@ if (!function_exists('currentTimestamp')) {
     }
 }
 
-if (!function_exists('rand_int')) {
+if (!function_exists('int_rand')) {
     /**
      * Random integer only
      *

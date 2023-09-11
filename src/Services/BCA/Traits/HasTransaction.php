@@ -2,6 +2,7 @@
 
 namespace Otnansirk\SnapBI\Services\BCA\Traits;
 
+use Otnansirk\SnapBI\Interfaces\HttpResponseInterface;
 use Otnansirk\SnapBI\Services\BCA\BcaConfig;
 use Otnansirk\SnapBI\Support\Signature;
 use Otnansirk\SnapBI\Support\Http;
@@ -14,9 +15,9 @@ trait HasTransaction
      *
      * @param string $startDate | Format ISO-8601 "2023-08-22T00:00:00+07:00"
      * @param string $endDate | Format ISO-8601 "2023-08-22T00:00:00+07:00"
-     * @return object|null
+     * @return HttpResponseInterface
      */
-    public static function bankStatement(string $startDate, string $endDate): object|null
+    public static function bankStatement(string $startDate, string $endDate): HttpResponseInterface
     {
         // Required access token
         self::authenticated();
@@ -43,7 +44,6 @@ trait HasTransaction
         $url = BcaConfig::get('base_url') . $path;
         return Http::withToken($accessToken)
             ->withHeaders($headers)
-            ->post($url, $body)
-            ->object();
+            ->post($url, $body);
     }
 }

@@ -20,9 +20,9 @@ interface SnapApiInterface
     /**
      * Get access token
      *
-     * @return string | null
+     * @return HttpResponseInterface
      */
-    public static function accessTokenB2b(): object|null;
+    public static function accessTokenB2b(): HttpResponseInterface;
 
     // TRANSACTION
 
@@ -31,7 +31,7 @@ interface SnapApiInterface
      *
      * @param string $startDate
      * @param string $endDate
-     * @return object|null
+     * @return HttpResponseInterface
      */
-    public static function bankStatement(string $startDate, string $endDate): object|null;
+    public static function bankStatement(string $startDate, string $endDate): HttpResponseInterface;
 }

@@ -3,7 +3,9 @@
 namespace Otnansirk\SnapBI\Services\BCA\Traits;
 
 use Otnansirk\SnapBI\Exception\AuthenticateException;
+use Otnansirk\SnapBI\Interfaces\HttpResponseInterface;
 use Otnansirk\SnapBI\Services\BCA\BcaConfig;
+use Otnansirk\SnapBI\Support\HttpResponse;
 use Otnansirk\SnapBI\Support\Signature;
 use Otnansirk\SnapBI\Support\Http;
 
@@ -24,7 +26,7 @@ trait HasAccessToken
         if ($token) {
             self::$token = $token;
         } else {
-            self::$token = self::accessTokenB2b()->accessToken;
+            self::$token = self::accessTokenB2b()->object()->accessToken;
         }
 
         return new self;
@@ -45,9 +47,9 @@ trait HasAccessToken
     /**
      * Get access token
      *
-     * @return string | null
+     * @return HttpResponse
      */
-    public static function accessTokenB2b(): object|null
+    public static function accessTokenB2b(): HttpResponseInterface
     {
         $path    = BcaConfig::get('base_url') . "/openapi/v1.0/access-token/b2b";
         $headers = [
@@ -57,6 +59,6 @@ trait HasAccessToken
         ];
 
         $body = ['grantType' => 'client_credentials'];
-        return Http::withHeaders($headers)->post($path, $body)->object();
+        return Http::withHeaders($headers)->post($path, $body);
     }
 }
