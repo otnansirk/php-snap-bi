@@ -39,9 +39,11 @@ final class Http
      *
      * @param string $url
      * @param array $headers
-     * @return object|null
+     * @return HttpResponseInterface
+     *
+     * @throws HttpException
      */
-    public static function get(string $url): HttpResponseInterface|null
+    public static function get(string $url): HttpResponseInterface
     {
         try {
             return self::requestor($url, 'GET', self::$optHeaders);
@@ -56,9 +58,11 @@ final class Http
      * @param string $url
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return HttpResponseInterface
+     *
+     * @throws HttpException
      */
-    public static function post(string $url, array $body): HttpResponseInterface|null
+    public static function post(string $url, array $body): HttpResponseInterface
     {
         try {
             return self::requestor($url, 'POST', self::$optHeaders, $body);
@@ -75,7 +79,9 @@ final class Http
      * @param string $method
      * @param array $headers
      * @param array $body
-     * @return object|null
+     * @return HttpResponseInterface
+     *
+     * @throws HttpException
      */
     public static function requestor(
         string $url,
@@ -104,14 +110,13 @@ final class Http
             );
             curl_setopt_array($ch, $curlOptions);
 
-            // Get http status code info
-            $httpCode   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $statusCode = http_response_code($httpCode);
-
             $response = curl_exec($ch);
             curl_close($ch);
 
-            return new HttpResponse($response, $statusCode);
+            // Get http status code info
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            return new HttpResponse($response, $httpCode);
 
         } catch (\Throwable $th) {
             throw new HttpException("Error when request API");
