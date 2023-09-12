@@ -54,9 +54,9 @@ trait HasConfig
      * Get single config
      *
      * @param string $name
-     * @return string|null
+     * @return mixed
      */
-    static function get(string $name): string|null
+    static function get(string $name): mixed
     {
         return isset(self::$configs[$name]) ? self::$configs[$name] : null;
     }

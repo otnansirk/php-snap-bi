@@ -28,7 +28,7 @@ interface ConfigInterface
      * Get single config
      *
      * @param string $name
-     * @return string|null
+     * @return mixed
      */
-    public static function get(string $name): string|null;
+    public static function get(string $name):mixed;
 }
