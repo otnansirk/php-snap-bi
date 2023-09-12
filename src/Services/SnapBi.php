@@ -4,6 +4,7 @@ namespace Otnansirk\SnapBI\Services;
 use Otnansirk\SnapBI\Exception\SnapBiException;
 use Otnansirk\SnapBI\Interfaces\SnapApiInterface;
 use Otnansirk\SnapBI\Services\BCA\BcaSnapApi;
+use Otnansirk\SnapBI\Services\Mandiri\MandiriSnapApi;
 
 final class SnapBi
 {
@@ -16,7 +17,8 @@ final class SnapBi
     static function registeredSnapApi(): array
     {
         return [
-            'bca' => BcaSnapApi::class
+            'bca'     => BcaSnapApi::class,
+            'mandiri' => MandiriSnapApi::class,
         ];
     }
 

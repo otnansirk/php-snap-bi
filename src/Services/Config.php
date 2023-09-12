@@ -4,6 +4,7 @@ namespace Otnansirk\SnapBI\Services;
 use Otnansirk\SnapBI\Exception\SnapBiException;
 use Otnansirk\SnapBI\Interfaces\ConfigInterface;
 use Otnansirk\SnapBI\Services\BCA\BcaConfig;
+use Otnansirk\SnapBI\Services\Mandiri\MandiriConfig;
 
 final class Config
 {
@@ -16,7 +17,8 @@ final class Config
     static function registeredConfig(): array
     {
         return [
-            'bca' => BcaConfig::class
+            'bca'     => BcaConfig::class,
+            'mandiri' => MandiriConfig::class,
         ];
     }
 
