@@ -1,5 +1,4 @@
 <?php
-use Otnansirk\SnapBI\Support\HttpResponse;
 use PHPUnit\Framework\TestCase;
 use Otnansirk\SnapBI\Support\Http;
 

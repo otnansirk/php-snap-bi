@@ -7,11 +7,20 @@
         <testsuite name="unit">
             <directory>tests/Unit</directory>
         </testsuite>
+        <testsuite name="integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <file>src/Support/HttpResponse.php</file>
+            <file>src/Support/Http.php</file>
+            <directory>src/Exception</directory>
+            <directory>src/Interfaces</directory>
+        </exclude>
     </source>
     <coverage>
         <report>
