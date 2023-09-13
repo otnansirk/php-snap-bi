@@ -6,6 +6,7 @@ use Otnansirk\SnapBI\Interfaces\HttpResponseInterface;
 use Otnansirk\SnapBI\Services\BCA\BcaConfig;
 use Otnansirk\SnapBI\Support\Signature;
 use Otnansirk\SnapBI\Support\Http;
+use Ramsey\Uuid\Uuid;
 
 
 trait HasTransaction
@@ -26,20 +27,21 @@ trait HasTransaction
         $timestamp   = currentTimestamp()->toIso8601String();
         $accessToken = self::$token;
 
-        $body    = [
-            "partnerReferenceNo" => int_rand(8),
+        $body = array_merge([
+            "partnerReferenceNo" => Uuid::uuid4(),
             "accountNo"          => BcaConfig::get('account_id'),
             "fromDateTime"       => $startDate,
             "toDateTime"         => $endDate,
             "bankCardToken"      => BcaConfig::get('bank_card_token')
-        ];
-        $headers = [
+        ], self::$body);
+
+        $headers = array_merge([
             'X-TIMESTAMP'   => $timestamp,
             'X-SIGNATURE'   => Signature::symmetric(BcaConfig::class, 'POST', $path, $body, $timestamp, $accessToken),
             'CHANNEL-ID'    => BcaConfig::get('channel_id'),
             'X-PARTNER-ID'  => BcaConfig::get('partner_id'),
-            'X-EXTERNAL-ID' => int_rand(8),
-        ];
+            'X-EXTERNAL-ID' => int_rand(16),
+        ], self::$headers);
 
         $url = BcaConfig::get('base_url') . $path;
         return Http::withToken($accessToken)
