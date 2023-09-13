@@ -2,13 +2,14 @@
 
 namespace Otnansirk\SnapBI\Services\BCA;
 
+use Otnansirk\SnapBI\Core\SnapApiCore;
 use Otnansirk\SnapBI\Exception\SnapBiException;
 use Otnansirk\SnapBI\Interfaces\SnapApiInterface;
 use Otnansirk\SnapBI\Services\BCA\Traits\HasAccessToken;
 use Otnansirk\SnapBI\Services\BCA\Traits\HasTransaction;
 use Otnansirk\SnapBI\Traits\HasSelfCall;
 
-class BcaSnapApi implements SnapApiInterface
+class BcaSnapApi extends SnapApiCore implements SnapApiInterface
 {
     use HasSelfCall;
     use HasAccessToken;
