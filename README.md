@@ -20,7 +20,7 @@ or
 visit [php-snap-bi Documentation](https://php-snap-bi.gitbook.io/docs/getting-started/configuration) for more detail.
 
 ## Contributing
-Thank you for considering contributing to the `php-snap-bi` package. The contribution guide can be found in the `php-snap-bi` [php-snap-bi documentation](https://php-snap-bi.gitbook.io/contribution).
+Thank you for considering contributing to the `php-snap-bi` package. The contribution guide can be found in the `php-snap-bi` [php-snap-bi documentation](https://php-snap-bi.gitbook.io/contribution-guide).
 
 ## Code of Conduct
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://php-snap-bi.gitbook.io/docs/contribution-guide/code-of-conduct).
