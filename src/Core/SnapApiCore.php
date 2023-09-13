@@ -3,8 +3,8 @@ namespace Otnansirk\SnapBI\Core;
 
 class SnapApiCore
 {
-    public static $headers;
-    public static $body;
+    public static $headers = array();
+    public static $body = array();
 
     /**
      * Set headers
