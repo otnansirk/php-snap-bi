@@ -4,6 +4,7 @@ namespace Otnansirk\SnapBI\Services;
 use Otnansirk\SnapBI\Exception\SnapBiException;
 use Otnansirk\SnapBI\Interfaces\ConfigInterface;
 use Otnansirk\SnapBI\Services\BCA\BcaConfig;
+use Otnansirk\SnapBI\Services\DANA\DanaConfig;
 use Otnansirk\SnapBI\Services\Mandiri\MandiriConfig;
 
 final class Config
@@ -19,6 +20,8 @@ final class Config
         return [
             'bca'     => BcaConfig::class,
             'mandiri' => MandiriConfig::class,
+            'dana'    => DanaConfig::class,
+            // Register new config
         ];
     }
 
