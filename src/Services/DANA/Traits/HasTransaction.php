@@ -19,7 +19,7 @@ trait HasTransaction
      * @param string $endDate | Format ISO-8601 "2023-08-22T00:00:00+07:00"
      * @return HttpResponseInterface
      */
-    public static function pay(): HttpResponseInterface
+    public static function directDebitPayment(): HttpResponseInterface
     {
         // Required access token
         self::authenticated();
