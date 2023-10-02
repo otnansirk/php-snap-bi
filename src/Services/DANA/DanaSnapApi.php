@@ -1,25 +1,23 @@
 <?php
 
-namespace Otnansirk\SnapBI\Services\BCA;
+namespace Otnansirk\SnapBI\Services\DANA;
 
 use Otnansirk\SnapBI\Core\SnapApiCore;
 use Otnansirk\SnapBI\Exception\SnapBiException;
 use Otnansirk\SnapBI\Interfaces\SnapApiInterface;
-use Otnansirk\SnapBI\Services\BCA\Traits\HasAccessToken;
-use Otnansirk\SnapBI\Services\BCA\Traits\HasTransaction;
-use Otnansirk\SnapBI\Services\BCA\Traits\HasVirtualAccount;
+use Otnansirk\SnapBI\Services\DANA\Traits\HasAccessToken;
+use Otnansirk\SnapBI\Services\DANA\Traits\HasTransaction;
 use Otnansirk\SnapBI\Traits\HasSelfCall;
 
-class BcaSnapApi extends SnapApiCore implements SnapApiInterface
+class DanaSnapApi extends SnapApiCore implements SnapApiInterface
 {
     use HasSelfCall;
     use HasAccessToken;
     use HasTransaction;
-    use HasVirtualAccount;
 
     function __construct()
     {
-        if (!count(BcaConfig::all())) {
+        if (!count(DanaConfig::all())) {
             throw new SnapBiException("Please register configuration first. See https://php-snap-bi.gitbook.io/docs/getting-started/configuration", 1);
         }
     }

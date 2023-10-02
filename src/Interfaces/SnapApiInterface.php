@@ -24,14 +24,4 @@ interface SnapApiInterface
      */
     public static function accessTokenB2b(): HttpResponseInterface;
 
-    // TRANSACTION
-
-    /**
-     * Get list of bank statment
-     *
-     * @param string $startDate
-     * @param string $endDate
-     * @return HttpResponseInterface
-     */
-    public static function bankStatement(string $startDate, string $endDate): HttpResponseInterface;
 }

@@ -13,14 +13,13 @@ trait HasConfig
      * @var array
      */
     private static $requiredConfigFields = [
-        "bank_card_token",
         "ssh_private_key",
         "ssh_public_key",
         "client_secret",
+        "client_id",
         "account_id",
         "partner_id",
         "channel_id",
-        "client_id",
         "base_url"
     ];
 
@@ -38,6 +37,8 @@ trait HasConfig
             }
             self::$configs[$field] = $configs[$field];
         }
+
+        self::$configs = array_merge(self::$configs, $configs);
     }
 
     /**
