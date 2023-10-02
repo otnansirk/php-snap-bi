@@ -7,6 +7,7 @@ use Otnansirk\SnapBI\Exception\SnapBiException;
 use Otnansirk\SnapBI\Interfaces\SnapApiInterface;
 use Otnansirk\SnapBI\Services\BCA\Traits\HasAccessToken;
 use Otnansirk\SnapBI\Services\BCA\Traits\HasTransaction;
+use Otnansirk\SnapBI\Services\BCA\Traits\HasVirtualAccount;
 use Otnansirk\SnapBI\Traits\HasSelfCall;
 
 class BcaSnapApi extends SnapApiCore implements SnapApiInterface
@@ -14,6 +15,7 @@ class BcaSnapApi extends SnapApiCore implements SnapApiInterface
     use HasSelfCall;
     use HasAccessToken;
     use HasTransaction;
+    use HasVirtualAccount;
 
     function __construct()
     {
