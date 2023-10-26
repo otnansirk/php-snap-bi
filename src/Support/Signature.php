@@ -26,6 +26,18 @@ final class Signature
         return base64_encode($signature);
     }
 
+    final public static function asymmetricBri(string $config,$timestamp) : String {
+        $privateKey = $config::get('ssh_private_key');
+        $stringToSign = $config::get('client_id').'|'.$timestamp;
+        $signature = "";
+        if (!openssl_sign($stringToSign, $signature, $privateKey, OPENSSL_ALGO_SHA256)) {
+            throw new SignatureException("Failed to generate signature");
+        }
+
+        // X-SIGNATURE
+        return base64_encode($signature);
+    }
+
     /**
      * Generate signature symmetric
      *
