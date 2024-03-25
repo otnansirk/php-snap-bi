@@ -55,11 +55,23 @@ trait HasConfig
      * Get single config
      *
      * @param string $name
+     * @param mixed $default
      * @return mixed
      */
-    static function get(string $name): mixed
+    static function get(string $name, mixed $default = null): mixed
     {
-        return isset(self::$configs[$name]) ? self::$configs[$name] : null;
+        $keys = explode('.', $name);
+        $value = self::$configs;
+
+        foreach ($keys as $key) {
+            if (isset($value[$key])) {
+                $value = $value[$key];
+            } else {
+                return ($default) ? $default: null;
+            }
+        }
+
+        return $value;
     }
 
 }

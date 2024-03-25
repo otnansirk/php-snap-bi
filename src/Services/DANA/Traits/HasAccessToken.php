@@ -8,6 +8,7 @@ use Otnansirk\SnapBI\Services\DANA\DanaConfig;
 use Otnansirk\SnapBI\Support\HttpResponse;
 use Otnansirk\SnapBI\Support\Signature;
 use Otnansirk\SnapBI\Support\Http;
+use Ramsey\Uuid\Uuid;
 
 
 trait HasAccessToken
@@ -60,5 +61,39 @@ trait HasAccessToken
 
         $body = ['grantType' => 'client_credentials'];
         return Http::withHeaders($headers)->post($path, $body);
+    }
+
+    /**
+     * Get oAuth url
+     *
+     * @param array $params
+     * @param array $data
+     * @param bool $sign
+     *
+     * @inheritDoc https://dashboard.dana.id/api-docs/read/125
+     */
+    public static function oAuthUrl(array $params = [], array $data = [], bool $sign = false)
+    {
+        $seamlessData = count($data)
+            ? ['seamlessData' => json_encode($data)]
+            : [];
+
+        $seamlessSign = $sign
+            ? ['seamlessSign' => Signature::signSHA256withRSA(DanaConfig::class, $data)]
+            : [];
+
+        $queryParams = [
+            'timestamp'   => currentTimestamp()->toIso8601String(),
+            'partnerId'   => DanaConfig::get('partner_id'),
+            'externalId'  => Uuid::uuid4()->toString(),
+            'channelId'   => DanaConfig::get('channel_id'),
+            'state'       => int_rand(32),
+            'scopes'      => 'QUERY_BALANCE,PUBLIC_ID',
+            'redirectUrl' => DanaConfig::get('redirect_url'),
+            ...$params,
+            ...$seamlessData,
+            ...$seamlessSign
+        ];
+        return DanaConfig::get('web_url') . "/v1.0/get-auth-code?" . http_build_query($queryParams);
     }
 }

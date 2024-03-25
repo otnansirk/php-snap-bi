@@ -4,6 +4,14 @@
     "keywords": [
         "snap-bi",
         "php-snap-bi",
+        "sdk-snap-bca",
+        "sdk-snap-mandiri",
+        "sdk-snap-dana",
+        "sdk-snap-bri",
+        "php-snap-bca",
+        "php-snap-mandiri",
+        "php-snap-dana",
+        "php-snap-bri",
         "php"
     ],
     "type": "library",
@@ -26,8 +34,8 @@
     "require": {
         "php": ">=7.4",
         "ext-curl": "*",
-        "nesbot/carbon": "^2.69",
-        "ramsey/uuid": "^4.7"
+        "ramsey/uuid": "^4.7",
+        "nesbot/carbon": "^2.71"
     },
     "require-dev": {
         "psy/psysh": "^0.11.20",
