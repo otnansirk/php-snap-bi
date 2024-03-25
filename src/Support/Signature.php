@@ -111,4 +111,22 @@ final class Signature
         // X-SIGNATURE
         return base64_encode($signature);
     }
+
+    /**
+     * Sign the seamlessData with generated privateKey and algorithm SHA256withRSA
+     *
+     * @param string $config
+     * @param array $body
+     * @return string
+     */
+    final public static function signSHA256withRSA(string $config, array $body): string
+    {
+
+        $privateKey = $config::get('ssh_private_key');
+        $signature  = "";
+        if (!openssl_sign(json_encode($body), $signature, $privateKey, OPENSSL_ALGO_SHA256)) {
+            throw new SignatureException("Failed to generate signature");
+        }
+        return base64_encode($signature);
+    }
 }
