@@ -118,7 +118,7 @@ trait HasTransaction
     }
 
     /**
-     * This service is used to transfer rtgs.
+     * this is function transfer rtgs
      * @return HttpResponseInterface
      * @throws \Otnansirk\SnapBI\Exception\AuthenticateException
      * @throws \Otnansirk\SnapBI\Exception\HttpException
@@ -151,7 +151,7 @@ trait HasTransaction
     }
 
     /**
-     * This service is used to transfer sknbi.
+     * This service is used to transfer SKNBI.
      * @return HttpResponseInterface
      * @throws \Otnansirk\SnapBI\Exception\AuthenticateException
      * @throws \Otnansirk\SnapBI\Exception\HttpException
@@ -390,6 +390,12 @@ trait HasTransaction
             ->post($url, $body);
     }
 
+    /**
+     * This service is used to transfer Bi fast.
+     * @return HttpResponseInterface
+     * @throws \Otnansirk\SnapBI\Exception\AuthenticateException
+     * @throws \Otnansirk\SnapBI\Exception\HttpException
+     */
     public static function transferBIFAST(): HttpResponseInterface
     {
         // Required access token
